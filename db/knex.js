@@ -5,7 +5,8 @@ const knex = require('knex')({
     user : 'standard',
     password : 'admin',
     database : 'almighty-cards'
-  }
+  },
+  // debug: true,
 });
 
 module.exports = knex;
