@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "nodemon server.js",
-    "ygo": "node scripts/ygo"
+    "ygo": "node scripts/ygo",
+    "init-db": "node scripts/schema/init"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -17,6 +18,11 @@
     "pug": "2.0.0-beta11"
   },
   "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.9.1",
     "nodemon": "^1.18.3"
   }
 }

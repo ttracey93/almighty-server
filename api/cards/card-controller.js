@@ -2,7 +2,6 @@ const CardDao = require('./card-dao');
 
 class CardController {
   static async get(req, res) {
-    console.log(req.params);
     const response = await CardDao.get(req.params.id);
     res.json(response);
   }

@@ -1,7 +1,7 @@
 const Axios = require('axios');
-const _ = require('lodash');
+// const _ = require('lodash');
 const fs = require('fs');
-// const DB = require('../db/knex');
+const DB = require('../db/knex');
 
 const PER_PAGE = 100;
 const PAGES = 94;
@@ -86,24 +86,23 @@ async function storeData(cards) {
 
   for (const card of cards) {
     try {
-
       let atk = Number.parseInt(card.atk, 10);
       let def = Number.parseInt(card.def, 10);
       let level = Number.parseInt(card.level, 10);
 
-      if (!atk || isNaN(atk)) {
-        atk = null
+      if (!atk || Number.isNaN(atk)) {
+        atk = null;
       }
 
-      if (!def || isNaN(def)) {
-        def = null
+      if (!def || Number.isNaN(def)) {
+        def = null;
       }
 
-      if (!level || isNaN(level)) {
-        level = null
+      if (!level || Number.isNaN(level)) {
+        level = null;
       }
 
-      const scrubbed = {
+      const attributes = {
         id: card.id,
         name: card.name,
         description: card.desc,
@@ -113,6 +112,14 @@ async function storeData(cards) {
         attribute: card.attribute,
         race: card.race,
         type: card.type,
+      };
+
+      // Game 1 === Yugioh
+      const scrubbed = {
+        game: 1,
+        name: card.name,
+        description: card.desc,
+        attributes: JSON.stringify(attributes),
       };
 
       await DB('cards').insert(scrubbed);
@@ -133,7 +140,7 @@ async function storeData(cards) {
 // getData().then(storeData);
 
 // Stream data from local fs to firebase
-// readData().then(storeData);
+readData().then(storeData);
 
 // Stream images from YGO to firebase
-readData().then(getCardImages);
+// readData().then(getCardImages);
