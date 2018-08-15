@@ -116,6 +116,7 @@ async function storeData(cards) {
 
       // Game 1 === Yugioh
       const scrubbed = {
+        serial: card.id,
         game: 1,
         name: card.name,
         description: card.desc,
@@ -134,6 +135,8 @@ async function storeData(cards) {
 
   console.log('\n\n');
   console.log(errors.length);
+
+  DB.destroy();
 }
 
 // Get card data from YGO, store it locally, and then upload it to firebase...

@@ -1,8 +1,10 @@
 const express = require('express');
-const Router = express.Router;
-
 const CardRouter = require('../api/cards/card-router');
 const DeckRouter = require('../api/decks/deck-router');
+const GameRouter = require('../api/games/game-router');
+
+const { Router } = express;
+
 
 class Routes {
   static init(app) {
@@ -10,6 +12,7 @@ class Routes {
 
     CardRouter.init(router);
     DeckRouter.init(router);
+    GameRouter.init(router);
 
     app.use('/', router);
   }

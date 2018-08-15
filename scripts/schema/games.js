@@ -1,6 +1,7 @@
 module.exports = function games(table) {
   table.increments('id').unsigned().primary();
   table.string('name');
+  table.string('shortname');
   table.text('description', 'longtext');
   table.integer('type').unsigned();
   table.timestamps();

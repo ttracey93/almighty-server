@@ -16,9 +16,32 @@ class DeckController {
       const deck = await DeckDao.create(req.body);
       res.status(201).json(deck);
     } catch (ex) {
-      console.log(ex.message);
       res.status(403).send(ex.message);
     }
+  }
+
+  static async getCards(req, res) {
+    try {
+      const cards = await DeckDao.getCards(req.params.id);
+      res.status(200).json(cards);
+
+      console.log(cards);
+    } catch (ex) {
+      res.status(403).send(ex.message);
+    }
+  }
+
+  static async addCard(req, res) {
+    try {
+      await DeckDao.addCard(req.body);
+      res.status(200);
+    } catch (ex) {
+      res.status(500).send(ex.message);
+    }
+  }
+
+  static async removeCard(req, res) {
+    console.log('remove card', req.body);
   }
 }
 

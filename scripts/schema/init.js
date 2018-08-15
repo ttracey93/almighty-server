@@ -7,6 +7,8 @@ const cards = require('./cards');
 const decks = require('./decks');
 const deckEntries = require('./deck-entries');
 
+const gameTypeSeedData = require('./data/game-types');
+const gameSeedData = require('./data/games');
 
 async function initDB() {
   const schema = Knex.schema.withSchema('almighty-cards');
@@ -25,21 +27,9 @@ async function initDB() {
     .createTable('decks', decks)
     .createTable('deck_entries', deckEntries);
 
-  const tcgs = {
-    name: 'Trading Card Games',
-    shortname: 'TCGs',
-    description: 'Card Games usually played on table tops',
-  };
 
-  await Knex('game_types').insert(tcgs);
-
-  const yugioh = {
-    name: 'Yugioh',
-    description: 'Official Yugioh Trading Card Game',
-    type: 1, // TCG
-  };
-
-  await Knex('games').insert(yugioh);
+  await Knex('game_types').insert(gameTypeSeedData);
+  await Knex('games').insert(gameSeedData);
 }
 
 console.log('Attempting to initialize database...');
